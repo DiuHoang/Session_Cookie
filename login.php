@@ -1,5 +1,18 @@
 <?php
-    session_start();
+if(isset($_POST['login'])){
+    $username = $_POST['username'];
+    $password = $_POST['password']; 
+    if($username == "admin" && $password == "123" ){
+        echo "<script> alert(' dang nhap thanh cong'); </script>";
+    }
+    else if($username == "" && $password == "" ){
+        echo "<script> alert(' Vui long nhap day du thong tin'); </script>";
+    }
+    else{
+        echo "<script> alert(' Username or Password wrong'); </script>";
+    }
+}
+    
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -10,34 +23,10 @@
     <title>Document</title>
 </head>
 <body>
-
-<form method="post">
-        <input type="text" name="username" placeholder="Username"><br>
-        <input type="password" name="password" placeholder="Password"><br>
-        <input type="submit" name = "login" value="Submit">
-        <?php
-        require "db.php";
-        $sql = "SELECT * from user";
-        $result = $db->query($sql)->fetch_all();
-
-        if(isset($_POST["login"])){
-           $check = false;
-           for($i=0; $i < count($result); $i++){
-                if($result[$i][1] == $_POST["username"] && $result[$i][2] == $_POST["password"]){
-                    $check = true;
-                    $_SESSION["username"] = $result[$i][1];
-                    $_SESSION["password"] = $result[$i][2];
-                    $_SESSION["fullname"] = $result[$i][3];
-                }
-           }
-           if($check == true){
-                header("location: profile.php");
-           }
-           else{
-            echo "Login that bai";
-           }
-        }
-    ?>
+    <form action="profile.php" method="post">
+        <input type="text" name="username" placeholder="Username">
+        <input type="password" name="password" placeholder="Password">
+        <button name="login" type="submit">Login</button>
     </form>
 </body>
 </html>

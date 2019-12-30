@@ -1,21 +1,14 @@
-<?php
-    session_start();
-?>
+
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+	<title></title>
 </head>
 <body>
-<?php
-    if(isset($_SESSION["username"]) && isset($_SESSION["password"]) && isset($_SESSION["fullname"])){
-       echo "Login thanh cong";
-       echo "</br>";
-       echo "Wellcome".$_SESSION["fullname"];
-    }
-?>
+    <?php
+        echo "Login thanh cong";
+        echo $_POST['username'];
+	?>
 </body>
 </html>
+
